@@ -45,10 +45,12 @@ class Simulation:
             self.t_depart = float('inf')
 
     def generate_interarrival(self):
-        return rand.expovariate(1./3)
+        # return rand.expovariate(1./3)
+        return np.random.exponential(1./3)
 
     def generate_service(self):
-        return rand.expovariate(1./4)
+        # return rand.expovariate(1./4)
+        return np.random.exponential(1./4)
 
     def print_customer_event(self):
         print("")
@@ -63,9 +65,12 @@ class Simulation:
         print("Total arrivals: ", self.num_arrivals)
         print("Total departure: ", self.num_departs)
         print("Total wait time: ", self.total_wait)
+        print("Average total wait per customemr: ",
+              self.total_wait / self.num_departs)
 
 
-rand.seed(0)
+# rand.seed(0)
+np.random.seed(0)
 s = Simulation()
 # s.advance_time()
 # s.print_customer_event()
@@ -79,7 +84,7 @@ s = Simulation()
 # s.advance_time()
 # s.print_customer_event()
 
-for i in range(50):
+for i in range(100):
     s.advance_time()
 
 s.generate_reports()
